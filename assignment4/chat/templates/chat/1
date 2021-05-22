@@ -1,0 +1,83 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<style type = "text/css">
+	body {
+		background-color: #FAFAFA;
+                margin: 0
+        }
+   
+        nav {
+                background-color: #FFF;
+                height: 3.3em;
+                line-height: 3.3em;
+                padding: 0 13.5em;
+                border-bottom: 0.1px solid #DBDEDB;
+        }
+
+	.nav-home {
+                margin-right: 8em;
+        }
+	
+	.text {
+		margin-left: 15em;		
+	}
+</style>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+</head>
+
+<body>
+	<nav>
+		<span class="nav-home">
+			<a href = "http://localhost:8000/"><i class="fas fa-home"></i></a>
+                </span>
+        </nav>
+	
+    <div class = "text">
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+    {{ room_name|json_script:"room-name" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+    </div>
+	<script src="https://kit.fontawesome.com/ab4a5778c6.js" crossorigin="anonymous"></script>
+</body>
+</html>

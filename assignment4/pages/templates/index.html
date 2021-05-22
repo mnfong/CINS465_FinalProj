@@ -1,0 +1,201 @@
+<html lang="eng">
+
+<style type = "text/css">
+	body {
+		background-color: #FAFAFA;
+                margin: 0
+	}
+  
+        nav {
+                background-color: #FFF;
+                height: 3.3em;
+                line-height: 3.3em;
+                padding: 0 13.5em;
+                border-bottom: 0.1px solid #DBDEDB;
+        }
+ 
+        .search {
+                background: #FAFAFA;
+		margin-left: 13em;
+                height: 2em;
+                width: 15.5em;
+                border: 1px solid #DBDBDB
+        }
+
+        .search::placeholder {
+                text-align: center;
+                color: #808080;
+        }
+
+        .nav-home {
+                margin-right: 8em;
+        }
+
+        .nav-mes {
+                margin-left: 15.65em;
+        }
+
+        .container {
+                padding: 3em 13%;
+        }
+ 
+        .bio {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                height: 13em;
+                padding: 3em 0 0 1em;
+                border-bottom 0.5px solid #DBDBDB;
+        }
+ 
+        .profile-photo {
+                background-color: brown;
+                width: 10em;
+                height: 10em;
+                border-radius: 50%;
+        }
+ 
+        .profile-photo>img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+        }
+ 
+        .profile-info .username {
+                font-size: 1.7em;
+                color: #545454;
+        } 
+        .profile-info button {
+                background-color: #0095F6;
+                color: #fff;
+                font-size: 1.1em;
+                width: 5.5em;
+                height: 2em;
+                border: unset;
+                cursor: pointer;
+	}
+ 
+	#addPhotoInput {
+		display: none;
+	}
+
+	.add-photo {
+		transform: scale(3);
+		position: fixed;
+		bottom: 3em;
+		right: 3.5em;
+		cursor: pointer;
+		color: #40186e;
+	}
+
+        .gallery-nav {
+                height: 3.5em
+        }
+ 
+        .gallery {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+		column-gap: 1.5em;
+                row-gap: 1.5em;
+                margin-bottom: 2em;
+        }
+
+        .item {
+                height: 17.5em;
+                width: 17.5em;
+                background: #000;
+        }
+
+        .item>img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover
+        }
+
+        .item>img:hover {
+                opacity: 0.7;
+        }
+ </style>
+
+<head>
+	<meta charset="utf-8">
+	<meta name = "viewport" content = "width-device-width, initial-scale = 1.0">
+	<title> Final Project :/ </title>
+</head>
+
+<body>
+	<nav>
+		<span class="nav-home">
+			<a href = "#"><i class="fas fa-home" onClick = "window.location.reload();"></i></a>
+		</span>
+
+		<input type = "text" class = "search" placeholder = "search">
+
+		<span class="nav-mes">
+			<a href = "../../chat/templates"><i class="fas fa-envelope"></i></a>
+		</span>
+	</nav>
+
+	<div class = "container">
+		<!---<section class = "bio">
+			<div class = "profile-photo">
+				<img src = "https://image.freepik.com/free-vector/cute-shiba-inu-dog-cartoon-icon_42750-300.jpg" alt = "profile-photo">
+			</div>
+			<div class = "profile-info">
+				<p class = "username">mn3664</p>
+				<button>follow</button>
+			</div>
+		</section>-->
+
+		<!---<input type = "file" name = "photo" id = "addPhotoInput" accept = "image/*" onchange = "showPreviewOne(event);">-->
+		<input type = "file" name = "photo" id = "addPhotoInput" accept = "image/*" onchange = "loadFile(event)" style = "display: none;">
+
+		<label for = "addPhotoInput">
+			<i class="add-photo far fa-plus-square"></i>
+		</label>
+
+		<div>
+			<section class = "gallery"> 
+				<a href = "#" class = "item">
+					<img id = "output" alt = "" />
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://www.escapistmagazine.com/v2/wp-content/uploads/2021/04/genshinimpactps5-702x395.jpg" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://media.pocketgamer.biz/2020/10/107138/genshin-impact-r225x.jpg" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYdpG1GR5WFmy21fT2ko1CAOFZBuUxIET1uA&usqp=CAU" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb0p88v5lN9oudVBm6Dsfrz7UzLf6kZBQi-g&usqp=CAU" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://data.whicdn.com/images/349807626/original.jpg" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://pbs.twimg.com/media/EmpIpFyWMBAF1a6.jpg" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://pbs.twimg.com/media/EypY1-QU8AIWMqF?format=jpg&name=900x900" alt = "">
+				</a>
+				<a href = "#" class = "item">
+					<img src = "https://pbs.twimg.com/media/E1MfawgWYAA3hF-?format=jpg&name=small" alt = "">
+				</a>
+				<!---<a href = "#" class = "item">
+					<img src = "https://pbs.twimg.com/media/EwZjAJNWYAopDjT?format=jpg&name=4096x4096" alt = "">
+				</a>-->
+			</section>
+		</div>
+	</div>
+
+	<script src="https://kit.fontawesome.com/ab4a5778c6.js" crossorigin="anonymous"></script>
+	<script>
+		var loadFile = function(event) {
+			var image = document.getElementById('output');
+			image.src = URL.createObjectURL(event.target.files[0]);
+		};
+	</script>
+</body>
+</html>

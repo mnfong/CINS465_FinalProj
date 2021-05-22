@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+<html>
+
+<head>
+<style> body {
+		text-align: center;
+		color: black;
+		font-size: xxx-large;
+		font-family: "Times New Roman"
+	}
+
+	form { 
+		text-align: center;
+		color: black;
+		font-size: medium;
+		font-family: "Times New Roman"
+		margin-bottom: lem
+	}
+
+	ul {
+		margin: 0;
+		padding: 0 20px;
+		width: 10em
+	}
+
+	ul li {
+		font-size: small;
+		color: pink;
+		font-family: "Times New Roman";
+		padding: 0;
+		width: 150px;
+		margin: 10px 0
+		float: left;
+		width: 10em
+	}
+
+	br {
+		clear: left
+	}
+
+	div {
+		text-align: left;
+		color: black;
+		font-size: small;
+		font-family: "Times New Roman"
+	}
+</style>
+
+<title>CINS 465</title>
+
+</head>
+
+<body>
+	{{ body }}
+
+
+	<ul>
+		{% for art in artist %}
+			<li>{{ art }}</li>
+		{% endfor %}
+	</ul>
+
+	<br />
+
+	<form action="/" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type = "submit" class = "button" value = "Add"/>
+	</form>
+</body>
+
+<div id="counter">
+	{% verbatim %}
+  		Time on Page: {{ counter }}
+	{% endverbatim %}
+</div>
+
+</html>
+
+{% block scripts %}
+<script src="https://unpkg.com/vue@next"></script>
+<script src="{% static 'js/myvue.js' %}"></script>
+{% endblock %}
